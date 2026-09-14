@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Producto - Nivel Admin</title>
+    <style>
+        body { font-family: sans-serif; background: #e9ecef; padding: 20px; display: flex; justify-content: center; }
+        .admin-box { background: white; padding: 20px 30px; border-radius: 8px; width: 500px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 4px solid #333; }
+        .grupo { margin-bottom: 12px; }
+        label { font-weight: bold; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #555; }
+        .error { color: red; font-size: 12px; display: none; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="admin-box">
+        <h2 style="text-align: center; color: #333;">Panel Admin: Nuevo Producto</h2>
+        <form id="formProducto">
+            
+            <div class="grupo">
+                <label>Código del Producto (Mín 3 caracteres):</label>
+                <input type="text" id="codigo">
+                <span id="errCodigo" class="error">El código es obligatorio y debe tener mínimo 3 caracteres.</span>
+            </div>
+
+            <div class="grupo">
+                <label>Nombre (Máx 100 caracteres):</label>
+                <input type="text" id="nombre" maxlength="100">
+                <span id="errNombre" class="error">El nombre es obligatorio.</span>
+            </div>
+
+            <div class="grupo">
+                <label>Descripción (Opcional, Máx 500):</label>
+                <textarea id="descripcion" rows="3" maxlength="500"></textarea>
+            </div>
+
+            <div class="grupo" style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label>Precio ($):</label>
+                    <input type="number" id="precio" step="0.01">
+                    <span id="errPrecio" class="error">Obligatorio (mínimo 0).</span>
+                </div>
+                <div style="flex: 1;">
+                    <label>Categoría:</label>
+                    <select id="categoria">
+                        <option value="">Seleccione...</option>
+                        <option value="accion">Acción</option>
+                        <option value="rpg">RPG</option>
+                    </select>
+                    <span id="errCat" class="error">Seleccione categoría.</span>
+                </div>
+            </div>
+
+            <div class="grupo" style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label>Stock Total:</label>
+                    <input type="number" id="stock" step="1">
+                    <span id="errStock" class="error">Obligatorio (entero, mín 0).</span>
+                </div>
+                <div style="flex: 1;">
+                    <label>Stock Crítico (Opcional):</label>
+                    <input type="number" id="stockCritico" step="1">
+                </div>
+            </div>
+
+            <button type="submit">Guardar Producto</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formProducto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let valido = true;
+
+            // 1. Validar Código (Mínimo 3 caracteres)
+            const cod = document.getElementById('codigo').value.trim();
+            if(cod.length < 3) {
+                document.getElementById('errCodigo').style.display = 'block';
+                valido = false;
+            } else { document.getElementById('errCodigo').style.display = 'none'; }
+
+            // 2. Validar Nombre
+            const nom = document.getElementById('nombre').value.trim();
+            if(nom === '') {
+                document.getElementById('errNombre').style.display = 'block';
+                valido = false;
+            } else { document.getElementById('errNombre').style.display = 'none'; }
+
+            // 3. Validar Precio (Requerido, Min 0)
+            const precio = document.getElementById('precio').value;
+            if(precio === '' || parseFloat(precio) < 0) {
+                document.getElementById('errPrecio').style.display = 'block';
+                valido = false;
+            } else { document.getElementById('errPrecio').style.display = 'none'; }
+
+            // 4. Validar Categoría
+            const cat = document.getElementById('categoria').value;
+            if(cat === '') {
+                document.getElementById('errCat').style.display = 'block';
+                valido = false;
+            } else { document.getElementById('errCat').style.display = 'none'; }
+
+            // 5. Validar Stock (Requerido, Min 0, Entero)
+            const stock = document.getElementById('stock').value;
+            if(stock === '' || parseInt(stock) < 0 || !Number.isInteger(Number(stock))) {
+                document.getElementById('errStock').style.display = 'block';
+                valido = false;
+            } else { document.getElementById('errStock').style.display = 'none'; }
+
+            // Si pasa todas las validaciones
+            if(valido) {
+                // Alerta de Stock Crítico
+                const stockCritico = document.getElementById('stockCritico').value;
+                if(stockCritico !== '' && parseInt(stock) <= parseInt(stockCritico)) {
+                    alert('⚠️ ALERTA: El stock actual es igual o menor al stock crítico definido.');
+                } else {
+                    alert('✅ Producto creado exitosamente.');
+                }
+                
+                document.getElementById('formProducto').reset();
+            }
+        });
+    </script>
+</body>
+</html>
