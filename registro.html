@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Level Up Gamer</title>
     <link rel="stylesheet" href="css/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <nav>
@@ -18,55 +18,95 @@
         </div>
         <a href="carrito.html" class="carrito-badge">🛒 Carrito: <span id="contador-carrito">0</span></a>
     </nav>
-    <div class="form-box">
-        <h2>Crear Cuenta</h2>
-        <form id="formReg">
-            <div class="grupo">
-                <label>RUT (Sin puntos ni guion):</label>
-                <input type="text" id="rut" placeholder="Ej: 19011022K" maxlength="9">
-                <span id="errRut" class="error">El RUT debe tener entre 7 y 9 caracteres, sin puntos ni guion.</span>
-            </div>
 
-            <div class="grupo">
-                <label>Correo Electrónico:</label>
-                <input type="email" id="correo" maxlength="100">
-                <span id="errCorreo" class="error">Correo inválido. Usa @duoc.cl, @profesor.duoc.cl o @gmail.com.</span>
-            </div>
+    <main>
+        <div class="form-box">
+            <h2>Crear Cuenta</h2>
+            <form id="formReg" novalidate>
+                <div class="grupo">
+                    <label for="run">RUN:</label>
+                    <input type="text" id="run" maxlength="9" placeholder="Ej: 19011022K" autocomplete="off">
+                    <span class="ayuda">Sin puntos ni guion, entre 7 y 9 caracteres.</span>
+                    <span id="err-run" class="error"></span>
+                </div>
 
-            <div class="grupo">
-                <label>Región:</label>
-                <select id="region">
-                    <option value="">Seleccione una región...</option>
-                    <option value="RM">Metropolitana</option>
-                    <option value="V">Valparaíso</option>
-                </select>
-            </div>
-            
-            <button type="submit">Registrarme</button>
-        </form>
-    </div>
+                <div class="grupo">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" maxlength="50" autocomplete="given-name">
+                    <span id="err-nombre" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" maxlength="100" autocomplete="family-name">
+                    <span id="err-apellidos" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" maxlength="100" placeholder="usuario@duoc.cl" autocomplete="email">
+                    <span class="ayuda">Solo @duoc.cl, @profesor.duoc.cl o @gmail.com.</span>
+                    <span id="err-correo" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" maxlength="10" autocomplete="new-password">
+                    <span class="ayuda">Entre 4 y 10 caracteres.</span>
+                    <span id="err-contrasena" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="confirmarContrasena">Confirmar contraseña:</label>
+                    <input type="password" id="confirmarContrasena" maxlength="10" autocomplete="new-password">
+                    <span id="err-confirmarContrasena" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="telefono">Teléfono (opcional):</label>
+                    <input type="tel" id="telefono" maxlength="12" placeholder="912345678" autocomplete="tel">
+                    <span id="err-telefono" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="fechaNacimiento">Fecha de nacimiento (opcional):</label>
+                    <input type="date" id="fechaNacimiento" autocomplete="bday">
+                    <span id="err-fechaNacimiento" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="region">Región:</label>
+                    <select id="region">
+                        <option value="">-- Seleccione la región --</option>
+                    </select>
+                    <span id="err-region" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="comuna">Comuna:</label>
+                    <select id="comuna">
+                        <option value="">-- Seleccione la comuna --</option>
+                    </select>
+                    <span id="err-comuna" class="error"></span>
+                </div>
+
+                <div class="grupo">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" maxlength="300" autocomplete="street-address">
+                    <span id="err-direccion" class="error"></span>
+                </div>
+
+                <button type="submit">Registrarme</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Level Up Gamer &copy; 2026 - Todos los derechos reservados.</p>
+    </footer>
+
     <script src="js/carrito.js"></script>
-    <script>
-        document.getElementById('formReg').addEventListener('submit', function(e) {
-            e.preventDefault();
-            let valido = true;
-            
-            // Validación RUT
-            const rut = document.getElementById('rut').value.trim();
-            const regexRut = /^[0-9]+[0-9kK]{1}$/;
-            if(rut.length < 7 || rut.length > 9 || !regexRut.test(rut)) {
-                document.getElementById('errRut').style.display = 'block';
-                valido = false;
-            } else { 
-                document.getElementById('errRut').style.display = 'none'; 
-            }
-
-            if(valido) { 
-                alert('¡Usuario registrado con éxito!');
-                window.location.href = 'index.html';
-            }
-        });
-    </script>
-    
+    <script src="js/regiones.js"></script>
+    <script src="js/registro.js"></script>
 </body>
 </html>
