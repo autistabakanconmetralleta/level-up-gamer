@@ -3,18 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro - Level Up Gamer</title>
-    <style>
-        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; display: flex; justify-content: center; }
-        .form-box { background: white; padding: 20px; border-radius: 8px; width: 400px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .grupo { margin-bottom: 15px; }
-        input, select { width: 95%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
-        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        .error { color: red; font-size: 12px; display: none; margin-top: 5px; }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="form-box">
-        <h2 style="text-align: center;">Crear Cuenta</h2>
+        <h2>Crear Cuenta</h2>
         <form id="formReg">
             <div class="grupo">
                 <label>RUT (Sin puntos ni guion):</label>
@@ -40,7 +34,7 @@
             <button type="submit">Registrarme</button>
         </form>
     </div>
-
+    <script src="js/carrito.js"></script>
     <script>
         document.getElementById('formReg').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -62,5 +56,6 @@
             }
         });
     </script>
+    
 </body>
 </html>
