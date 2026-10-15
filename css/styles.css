@@ -304,4 +304,50 @@ footer {
         width: 100%;
         max-width: 320px;
     }
+    
+}
+a.carrito-badge {
+    color: inherit;
+    text-decoration: none;
+}
+
+.fila-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.fila-carrito h3 {
+    margin: 0 0 5px 0;
+}
+
+.fila-carrito .precio {
+    margin-bottom: 0;
+}
+
+.fila-carrito button {
+    width: auto;
+    padding: 6px 14px;
+}
+
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-eliminar {
+    background: #ef4444;
+}
+
+.resumen-carrito {
+    text-align: right;
+    font-size: 1.4em;
+    margin-top: 25px;
 }

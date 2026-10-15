@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Level Up Gamer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav>
+        <div class="logo-nav">⚡ Level Up Gamer</div>
+        <div class="menu-links">
+            <a href="index.html">Home</a>
+            <a href="productos.html">Productos</a>
+            <a href="login.html">Iniciar Sesión</a>
+            <a href="registro.html">Registro</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+        <a href="carrito.html" class="carrito-badge">🛒 Carrito: <span id="contador-carrito">0</span></a>
+    </nav>
+
+    <main class="catalogo-container">
+        <h2 class="titulo-catalogo">Mi carrito de compras</h2>
+        <div id="lista-carrito"></div>
+        <p class="resumen-carrito">Total: <strong id="total-carrito">$0</strong></p>
+    </main>
+
+    <footer>
+        <p>Level Up Gamer &copy; 2026 - Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/carrito.js"></script>
+    <script src="js/carrito-vista.js"></script>
+</body>
+</html>
